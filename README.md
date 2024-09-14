@@ -42,8 +42,8 @@ for each wear category.</p>
 from collections import defaultdict
 from itertools import combinations
 # Function to generate candidate k-item sequences
-def generate_candidates(dataset, k):
-candidates = defaultdict(int)
+def generate_candidates(dataset, k, min_support):
+    candidates = defaultdict(int)
     for seq in dataset:
         for comb in combinations(seq, k):
             candidates[comb] += 1
@@ -60,6 +60,9 @@ def gsp(dataset, min_support):
             break
         frequent_patterns.update(candidates)
         k += 1
+
+    return frequent_patterns
+
 
 
 #Example dataset for each category
